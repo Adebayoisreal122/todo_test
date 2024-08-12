@@ -1,0 +1,70 @@
+
+
+
+<div class="container mx-auto p-3">
+    <div class="mx-auto">
+        <h1 class="text-3xl text-primary font-bold text-center my-3">My Todo App </h1>
+  <div>
+    <div class="p-3 justify-center">
+
+        <form action="" class="d-block">
+            <input class="form-control my-3"  type="text" name="tittle"
+             [(ngModel)]="titt"
+              #tittle="ngModel"
+              [class.is-valid]="tittle.valid && tittle.dirty"
+              [class.is-invalid]="tittle.invalid " required>
+            <div *ngIf="tittle.invalid  ">
+                <span class="text-danger text-center" *ngIf="tittle.errors?.['required']" > this field is required </span>
+            </div>
+            <textarea class="form-control my-3"  name="content"
+            placeholder="Todo Description"
+            [(ngModel)]="cont"
+            #content="ngModel"
+            [class.is-valid]="content.valid && content.dirty"
+            [class.is-invalid]="content.invalid &&  content.dirty" required rows="12" cols="50">
+        </textarea>
+<button class="btn btn-primary form-control w-50" (click)="submit()">save Todo</button>
+        </form>
+  
+    </div>
+  
+  </div>
+  </div>
+
+  <div class="container mt-3">
+    <h2 class="text-center">Saved Contacts</h2>
+    <div  *ngFor="let todo of todarray let i=index"  class="card my-2">
+      <div class="card-body">
+        <p><strong>Title:</strong>{{todo.tittle}} </p>
+        <p><strong>Content:</strong> {{todo.content}} </p>
+      </div>
+      <button class="btn btn-outline-primary w-25 m-3"  (click)="edit(i)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(i)" >edit</button>
+      <button class="btn btn-outline-danger w-25 m-3" (click)="deleted(i)"  >delete</button>
+    </div>
+    
+    
+  
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div  class="modal-body">
+        
+          <div class="contaier  align-items-center justify-content-center ">
+            <h2 class=" text-center my-2">Update Your Todo</h2>
+            <input type="text" class="form-control my-2" [(ngModel)]="newTittle" placeholder="Enter new name">
+            <textarea type="text" class="form-control my-2" [(ngModel)]="newContent" placeholder="Enter new phone number">
+           
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="update()" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
