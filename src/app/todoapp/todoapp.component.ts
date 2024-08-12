@@ -64,11 +64,11 @@ update(){
 
 
   if (this.newIndex !== null) {
-  let newContactobj= {
+  let newtodarray= {
     tittle: this.newTittle,
     content: this.newContent,
   };
- this.todarray[this.newIndex] = newContactobj;
+ this.todarray[this.newIndex] = newtodarray;
   localStorage.setItem('todoapp', JSON.stringify(this.todarray));
 
 
