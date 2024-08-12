@@ -25,14 +25,7 @@ export class TodoappComponent {
 
 
 
-  edit(todo: number){
-  this.newTittle = this.todarray[todo].titt;
-  this.newContent = this.todarray[todo].cont;
-  this.newtodarray = this.todarray[todo];
-  this.newIndex = todo;
-
-
-  }
+ 
   ngOnInit() {
     const savedTodo = localStorage.getItem('todoapp');
     if (savedTodo) {
@@ -49,15 +42,22 @@ export class TodoappComponent {
     tittle: this.titt,
     content: this.cont,
   }
-    this.todarray.push({ todoobj});
-    // console.log(this.todarray);
+    this.todarray.push(todoobj);
+    console.log(this.todarray);
   localStorage.setItem('todoapp',JSON.stringify(this.todarray));
 
     this.titt = '';
     this.cont = '';
   }
 
-
+  edit(todo: number){
+    this.newTittle = this.todarray[todo].tittle;
+    this.newContent = this.todarray[todo].content;
+    this.newtodarray = this.todarray[todo];
+    this.newIndex = todo;
+  
+  
+    }
 
   
 update(){
@@ -65,8 +65,8 @@ update(){
 
   if (this.newIndex !== null) {
   let newContactobj= {
-    name: this.newTittle,
-    phone: this.newContent,
+    tittle: this.newTittle,
+    content: this.newContent,
   };
  this.todarray[this.newIndex] = newContactobj;
   localStorage.setItem('todoapp', JSON.stringify(this.todarray));
